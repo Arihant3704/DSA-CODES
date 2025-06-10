@@ -28,11 +28,45 @@ int binary_search(int arr[], int size, int key)
     return -1;
 }
 
+void sort(int arr[], int size)
+{
+    for (int i = 0; i < size - 1; ++i)
+    {
+        for (int j = 0; j < size - i - 1; ++j)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int key = 6;
+    int size;
+
+    printf("Enter number of elements: ");
+    if (scanf("%d", &size) != 1 || size <= 0)
+    {
+        printf("Invalid size\n");
+        return 1;
+    }
+
+    int arr[size];
+    printf("Enter %d elements: ", size);
+    for (int i = 0; i < size; ++i)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    sort(arr, size);
+
+    int key;
+    printf("Enter element to search: ");
+    scanf("%d", &key);
 
     int index = binary_search(arr, size, key);
 
