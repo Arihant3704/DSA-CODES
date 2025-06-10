@@ -5,11 +5,19 @@ int main() {
     int key = 6;
     int found = 0; // Flag to indicate if key is found
 
-    // Linear search
-    for (int i = 0; i < 10; i++) {
-        if (arr[i] == key) {
+    // Binary search
+    int low = 0;
+    int high = 9; // Last index of the array
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == key) {
             found = 1; // Key found
             break;
+        } else if (arr[mid] < key) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
     }
 
